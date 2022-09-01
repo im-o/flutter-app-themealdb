@@ -9,6 +9,7 @@ class Dimens {
 
   static const double dp0 = 0;
   static const double dp2 = 2;
+  static const double dp3 = 3;
   static const double dp4 = 4;
   static const double dp6 = 6;
   static const double dp8 = 8;

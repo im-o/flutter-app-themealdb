@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app_dicoding/core/preferences/dimens.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../../../../../../core/core.dart';
 import '../../../../home.dart';
+import '../../movie_detail/page.dart';
 
 class MoviesSection extends StatefulWidget {
   const MoviesSection({Key? key}) : super(key: key);
@@ -19,28 +20,30 @@ class _MoviesSectionState extends State<MoviesSection> {
 
   @override
   Widget build(BuildContext context) {
-    return _movies.isNotEmpty
-        ? Padding(
-            padding: const EdgeInsets.all(Dimens.dp4),
-            child: SingleChildScrollView(
-              child: StaggeredGrid.count(
-                crossAxisCount: 3,
-                mainAxisSpacing: 0,
-                crossAxisSpacing: 0,
-                children: _movies.map((movie) {
-                  return MovieItemCard(
-                    movie: movie,
-                    onTapMovie: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const MovieDetailPage(),
-                      ));
-                    },
-                  );
-                }).toList(),
+    return LayoutBuilder(builder: (context, constraints) {
+      return _movies.isNotEmpty
+          ? Padding(
+              padding: const EdgeInsets.all(Dimens.dp4),
+              child: SingleChildScrollView(
+                child: StaggeredGrid.count(
+                  crossAxisCount: constraints.maxWidth > 900 ? 5 : 3,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 0,
+                  children: _movies.map((movie) {
+                    return MovieItemCard(
+                      movie: movie,
+                      onTapMovie: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MovieDetailPage(movie: movie),
+                        ));
+                      },
+                    );
+                  }).toList(),
+                ),
               ),
-            ),
-          )
-        : const Center(child: Text("Data is empty!"));
+            )
+          : const Center(child: Text("Data is empty!"));
+    });
   }
 
   @override

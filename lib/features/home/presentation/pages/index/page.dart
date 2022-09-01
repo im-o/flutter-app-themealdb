@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_dicoding/features/home/presentation/pages/index/sections/movies_section.dart';
+
+import 'sections/sections.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

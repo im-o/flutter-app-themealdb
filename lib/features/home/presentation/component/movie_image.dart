@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_dicoding/features/home/home.dart';
+
+import '../../../../core/core.dart';
+import '../../home.dart';
 
 class MovieImage extends StatelessWidget {
   final MovieResult movie;
@@ -12,9 +14,9 @@ class MovieImage extends StatelessWidget {
       children: [
         Container(
           child: movie.posterPath == null
-              ? const Icon(Icons.movie)
+              ? const Icon(Icons.movie_outlined)
               : Image.network(
-                  'https://image.tmdb.org/t/p/w500' + movie.posterPath!,
+                  pathImageTMDB + (movie.posterPath ?? ""),
                   fit: BoxFit.fitWidth,
                 ),
         ),
