@@ -12,7 +12,6 @@ class MovieResult {
     this.releaseDate,
     this.title,
     this.video,
-    // this.voteAverage,
     this.voteCount,
   });
 
@@ -29,7 +28,6 @@ class MovieResult {
     releaseDate = json['release_date'];
     title = json['title'];
     video = json['video'];
-    // voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
 
@@ -45,8 +43,6 @@ class MovieResult {
   String? releaseDate;
   String? title;
   bool? video;
-
-  // double? voteAverage;
   int? voteCount;
 
   Map<String, dynamic> toJson() {
@@ -63,7 +59,6 @@ class MovieResult {
     map['release_date'] = releaseDate;
     map['title'] = title;
     map['video'] = video;
-    // map['vote_average'] = voteAverage;
     map['vote_count'] = voteCount;
     return map;
   }

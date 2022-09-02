@@ -11,7 +11,9 @@ class MovieDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(movie.title.toString())),
+      appBar: AppBar(
+        title: Text(movie.title.toString()),
+      ),
       body: MovieDetailSection(movie: movie),
     );
   }

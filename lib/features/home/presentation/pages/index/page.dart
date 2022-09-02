@@ -8,7 +8,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dicoding Submission')),
+      appBar: AppBar(
+        title: const Text('Dicoding Submission'),
+      ),
       body: _buildBody(),
     );
   }
