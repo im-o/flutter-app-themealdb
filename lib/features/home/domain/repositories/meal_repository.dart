@@ -2,10 +2,10 @@ import 'package:flutter_app_dicoding/features/home/data/data_source/remote_data_
 
 import '../../data/data.dart';
 
-class HomeRepository {
-  const HomeRepository({required this.remoteDataSource});
+class MealRepository {
+  const MealRepository({required this.remoteDataSource});
 
-  final HomeRemoteDataSource remoteDataSource;
+  final MealRemoteDataSource remoteDataSource;
 
   Future<List<MealModel>> getMeals(String query) async {
     return await remoteDataSource.getMeals(query);

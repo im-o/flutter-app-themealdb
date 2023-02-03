@@ -3,14 +3,14 @@ import 'package:dio/dio.dart';
 import '../../../../core/core.dart';
 import '../../home.dart';
 
-abstract class HomeRemoteDataSource {
+abstract class MealRemoteDataSource {
   Future<List<MealModel>> getMeals(String query);
 
   Future<List<MealModel>> getMealDetail(String id);
 }
 
-class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
-  const HomeRemoteDataSourceImpl(this.client);
+class MealRemoteDataSourceImpl implements MealRemoteDataSource {
+  const MealRemoteDataSourceImpl(this.client);
 
   final DioClient client;
 
