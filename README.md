@@ -1,4 +1,4 @@
-# flutter_app_dicoding
+# flutter_app_themealdb
 
 A new Simple Flutter App for submission.
 
