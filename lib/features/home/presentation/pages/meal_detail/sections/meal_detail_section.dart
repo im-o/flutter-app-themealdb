@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/core.dart';
 import '../../../../home.dart';
 
-class MovieDetailSection extends StatelessWidget {
-  const MovieDetailSection({Key? key, required this.meal}) : super(key: key);
+class MealDetailSection extends StatelessWidget {
+  const MealDetailSection({Key? key, required this.meal}) : super(key: key);
 
   final MealModel meal;
 
@@ -27,7 +27,7 @@ class MovieDetailSection extends StatelessWidget {
                   ),
                   semanticContainer: true,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: MovieImage(meal: meal),
+                  child: MealImage(meal: meal),
                 ),
               ),
               const SizedBox(height: Dimens.dp16),

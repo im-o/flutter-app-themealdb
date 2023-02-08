@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../home.dart';
 
-class MovieImage extends StatelessWidget {
+class MealImage extends StatelessWidget {
   final MealModel meal;
 
-  const MovieImage({Key? key, required this.meal}) : super(key: key);
+  const MealImage({Key? key, required this.meal}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

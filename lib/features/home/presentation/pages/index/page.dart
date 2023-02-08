@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
     final _mealsBloc = GetIt.I<MealsBloc>();
     return BlocProvider(
       create: (context) => _mealsBloc,
-      child: const MoviesSection(),
+      child: const MealsSection(),
     );
   }
 }

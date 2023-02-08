@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../home.dart';
 import 'sections/sections.dart';
 
-class MovieDetailPage extends StatelessWidget {
-  const MovieDetailPage({Key? key, required this.meal}) : super(key: key);
+class MealDetailPage extends StatelessWidget {
+  const MealDetailPage({Key? key, required this.meal}) : super(key: key);
 
   final MealModel meal;
 
@@ -14,7 +14,7 @@ class MovieDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(meal.strMeal.toString()),
       ),
-      body: MovieDetailSection(meal: meal),
+      body: MealDetailSection(meal: meal),
     );
   }
 }

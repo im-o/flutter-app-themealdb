@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../core/core.dart';
 import '../../home.dart';
 
-class MovieItemCard extends StatelessWidget {
+class MealItemCard extends StatelessWidget {
   final MealModel meal;
-  final Function onTapMovie;
+  final Function onTapMeal;
 
-  const MovieItemCard({
+  const MealItemCard({
     Key? key,
     required this.meal,
-    required this.onTapMovie,
+    required this.onTapMeal,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class MovieItemCard extends StatelessWidget {
             ),
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: MovieImage(meal: meal),
+            child: MealImage(meal: meal),
           ),
           const SizedBox(height: Dimens.dp8),
           RegularText(
@@ -40,7 +40,7 @@ class MovieItemCard extends StatelessWidget {
         ],
       ),
       onTap: () {
-        onTapMovie();
+        onTapMeal();
       },
     );
   }

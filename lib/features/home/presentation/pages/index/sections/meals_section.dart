@@ -4,16 +4,16 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../../../../core/core.dart';
 import '../../../../home.dart';
-import '../../movie_detail/page.dart';
+import '../../meal_detail/page.dart';
 
-class MoviesSection extends StatefulWidget {
-  const MoviesSection({Key? key}) : super(key: key);
+class MealsSection extends StatefulWidget {
+  const MealsSection({Key? key}) : super(key: key);
 
   @override
-  State<MoviesSection> createState() => _MoviesSectionState();
+  State<MealsSection> createState() => _MealsSectionState();
 }
 
-class _MoviesSectionState extends State<MoviesSection> {
+class _MealsSectionState extends State<MealsSection> {
   late MealsBloc _mealsBloc;
 
   var _event = const MealsFetched(query: '');
@@ -62,11 +62,11 @@ class _MoviesSectionState extends State<MoviesSection> {
                     mainAxisSpacing: 0,
                     crossAxisSpacing: 0,
                     children: state.data.map((meal) {
-                      return MovieItemCard(
+                      return MealItemCard(
                         meal: meal,
-                        onTapMovie: () {
+                        onTapMeal: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MovieDetailPage(meal: meal),
+                            builder: (context) => MealDetailPage(meal: meal),
                           ));
                         },
                       );

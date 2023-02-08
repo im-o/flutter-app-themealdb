@@ -1,2 +1,2 @@
-export 'movie_image.dart';
-export 'movie_item_card.dart';
+export 'meal_image.dart';
+export 'meal_item_card.dart';

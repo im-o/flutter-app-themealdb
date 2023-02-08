@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Click below, to see it :sparkles:
 
-:pushpin: web version (netlify): [web-themoviedb](https://stellar-kleicha-f02400.netlify.app/)  
-:pushpin: android version: [android-themoviedb](https://github.com/im-o/flutter-beginner-dicoding/suites/8117045773/artifacts/351135223) 
+:pushpin: web version (netlify): [web-themealdb](https://stellar-kleicha-f02400.netlify.app/)  
+:pushpin: android version: [android-themealdb](https://github.com/im-o/flutter-beginner-dicoding/suites/8117045773/artifacts/351135223)
 
 ![flutter-app-dicoding-gif](https://user-images.githubusercontent.com/22957498/188252073-1850b180-d4d1-4776-8ee0-06cf192f1346.gif)
