@@ -18,15 +18,4 @@ class MealRepositoryImpl implements MealRepository {
       return Left(e.toFailure());
     }
   }
-
-  @override
-  Future<Either<Failure, PaginationData<List<MealModel>>>> getMealDetail(
-      String id) async {
-    try {
-      final result = await remoteDataSource.getMealDetail(id);
-      return Right(PaginationData(data: result));
-    } catch (e) {
-      return Left(e.toFailure());
-    }
-  }
 }

@@ -24,7 +24,4 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(
     () => GetMealsUseCase(repository: locator()),
   );
-  locator.registerLazySingleton(
-    () => GetMealDetailUseCase(repository: locator()),
-  );
 }

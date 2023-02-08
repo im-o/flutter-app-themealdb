@@ -7,7 +7,4 @@ abstract class MealRepository {
   Future<Either<Failure, PaginationData<List<MealModel>>>> getMeals(
     String query,
   );
-
-  Future<Either<Failure, PaginationData<List<MealModel>>>> getMealDetail(
-      String id);
 }
