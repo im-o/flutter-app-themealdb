@@ -1,7 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../../../../core/core.dart';
@@ -16,47 +14,75 @@ class MoviesSection extends StatefulWidget {
 }
 
 class _MoviesSectionState extends State<MoviesSection> {
-  List<MovieResult> _movies = [];
+  late MealsBloc _mealsBloc;
 
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return _movies.isNotEmpty
-          ? Padding(
-              padding: const EdgeInsets.all(Dimens.dp4),
-              child: SingleChildScrollView(
-                child: StaggeredGrid.count(
-                  crossAxisCount: constraints.maxWidth > 900 ? 5 : 3,
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 0,
-                  children: _movies.map((movie) {
-                    return MovieItemCard(
-                      movie: movie,
-                      onTapMovie: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MovieDetailPage(movie: movie),
-                        ));
-                      },
-                    );
-                  }).toList(),
-                ),
-              ),
-            )
-          : const Center(child: Text("Data is empty!"));
-    });
-  }
+  var _event = const MealsFetched(query: '');
 
   @override
   void initState() {
+    _mealsBloc = BlocProvider.of<MealsBloc>(context);
+    _initFetchData();
     super.initState();
-    readJson();
   }
 
-  Future<void> readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/json/themoviedb.json');
-    var data = await json.decode(response);
-    var movies = MovieData.fromJson(data).results;
-    setState(() => _movies = movies ?? []);
+  void _initFetchData() {
+    _fetchData(_event);
+  }
+
+  void _fetchData(MealsFetched event) {
+    _mealsBloc.add(event);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildBody();
+  }
+
+  Widget _buildBody() {
+    return BlocConsumer<MealsBloc, MealsState>(
+      listener: (context, state) {
+        if (state.blocStatus == MealsBlocStatus.success) {
+          _event = _event.copyWith(query: state.query);
+        }
+      },
+      builder: (context, state) {
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            if (state.data.isNotEmpty) {
+              return Padding(
+                padding: const EdgeInsets.only(
+                  bottom: Dimens.dp0,
+                  top: Dimens.dp0,
+                  left: Dimens.dp8,
+                  right: Dimens.dp8,
+                ),
+                child: SingleChildScrollView(
+                  child: StaggeredGrid.count(
+                    crossAxisCount: constraints.maxWidth > 900 ? 5 : 3,
+                    mainAxisSpacing: 0,
+                    crossAxisSpacing: 0,
+                    children: state.data.map((meal) {
+                      return MovieItemCard(
+                        meal: meal,
+                        onTapMovie: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MovieDetailPage(meal: meal),
+                          ));
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+              );
+            } else if (state.data.isEmpty &&
+                state.blocStatus == MealsBlocStatus.success) {
+              return const Center(child: Text("Data is empty!"));
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        );
+      },
+    );
   }
 }

@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/core.dart';
 import '../../home.dart';
 
 class MovieImage extends StatelessWidget {
-  final MovieResult movie;
+  final MealModel meal;
 
-  const MovieImage({Key? key, required this.movie}) : super(key: key);
+  const MovieImage({Key? key, required this.meal}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          child: movie.posterPath == null
+          child: meal.strMealThumb == null
               ? const Icon(Icons.movie_outlined)
               : Image.network(
-                  pathImageTMDB + (movie.posterPath ?? ""),
+                  meal.strMealThumb ?? "",
                   fit: BoxFit.fitWidth,
                 ),
         ),

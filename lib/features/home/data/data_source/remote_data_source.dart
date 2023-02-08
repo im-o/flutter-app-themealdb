@@ -10,7 +10,7 @@ abstract class MealRemoteDataSource {
 }
 
 class MealRemoteDataSourceImpl implements MealRemoteDataSource {
-  const MealRemoteDataSourceImpl(this.client);
+  const MealRemoteDataSourceImpl({required this.client});
 
   final DioClient client;
 

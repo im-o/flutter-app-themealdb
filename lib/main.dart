@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
+import 'app/runner.dart';
 
-import 'app/app.dart';
-
-void main() {
-  runApp(const App());
+Future<void> main() async {
+  await runnerApp();
 }

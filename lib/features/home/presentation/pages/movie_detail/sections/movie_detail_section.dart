@@ -4,9 +4,9 @@ import '../../../../../../core/core.dart';
 import '../../../../home.dart';
 
 class MovieDetailSection extends StatelessWidget {
-  const MovieDetailSection({Key? key, required this.movie}) : super(key: key);
+  const MovieDetailSection({Key? key, required this.meal}) : super(key: key);
 
-  final MovieResult movie;
+  final MealModel meal;
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +27,18 @@ class MovieDetailSection extends StatelessWidget {
                   ),
                   semanticContainer: true,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: MovieImage(movie: movie),
+                  child: MovieImage(meal: meal),
                 ),
               ),
               const SizedBox(height: Dimens.dp16),
               TitleText(
-                movie.title ?? "",
+                meal.strMeal ?? "",
                 align: TextAlign.center,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: Dimens.dp8),
               SubTitleText(
-                "${movie.releaseDate} • ${movie.originalLanguage} • "
-                "${movie.voteCount} • ${movie.adult}",
+                "${meal.strArea} • ${meal.strCategory} • ${meal.strTags}",
                 style: const TextStyle(
                   fontSize: Dimens.dp14,
                   color: Colors.blueGrey,
@@ -48,10 +47,10 @@ class MovieDetailSection extends StatelessWidget {
               const SizedBox(height: Dimens.dp16),
               const Divider(thickness: Dimens.dp3),
               const SizedBox(height: Dimens.dp16),
-              const SubTitleText('Overview'),
+              const SubTitleText('Instructions'),
               const SizedBox(height: Dimens.dp16),
               RegularText(
-                movie.overview ?? "",
+                meal.strInstructions ?? "",
                 align: TextAlign.justify,
                 style: const TextStyle(
                   color: Colors.white60,
