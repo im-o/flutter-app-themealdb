@@ -17,11 +17,13 @@ class MealDetailSection extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                width: constraints.maxWidth > 900 ? Dimens.dp500 : Dimens.dp200,
+                width: constraints.maxWidth > 700
+                    ? Dimens.dp300
+                    : Dimens.width(context),
                 child: Card(
                   elevation: 3,
                   shape: RoundedRectangleBorder(
-                    borderRadius: constraints.maxWidth > 900
+                    borderRadius: constraints.maxWidth > 700
                         ? BorderRadius.circular(Dimens.dp16)
                         : BorderRadius.circular(Dimens.dp8),
                   ),
