@@ -58,7 +58,7 @@ class _MealsSectionState extends State<MealsSection> {
                 ),
                 child: SingleChildScrollView(
                   child: StaggeredGrid.count(
-                    crossAxisCount: constraints.maxWidth > 900 ? 5 : 3,
+                    crossAxisCount: constraints.maxWidth > 700 ? 5 : 3,
                     mainAxisSpacing: 0,
                     crossAxisSpacing: 0,
                     children: state.data.map((meal) {
