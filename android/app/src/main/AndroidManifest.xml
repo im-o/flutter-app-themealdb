@@ -1,10 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rivaldy.flutter_app_themealdb">
+    package="com.rivaldy.mealsmaster">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:label="flutter_app_themealdb">
+        android:icon="@drawable/mm_logo"
+        android:label="Meals Master">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

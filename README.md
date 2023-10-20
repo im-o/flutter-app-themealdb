@@ -1,4 +1,4 @@
-# flutter_app_themealdb
+# mealsmaster
 
 A new Simple Flutter App for get data from API using [TheMealDB.com](https://www.themealdb.com/) .
 

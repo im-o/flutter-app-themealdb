@@ -1,4 +1,4 @@
-package com.rivaldy.flutter_app_themealdb
+package com.rivaldy.mealsmaster
 
 import io.flutter.embedding.android.FlutterActivity
 
