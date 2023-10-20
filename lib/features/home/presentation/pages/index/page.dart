@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text('WLB Meals'),
+          child: Text('Meals Master'),
         ),
       ),
       body: _buildBody(),
