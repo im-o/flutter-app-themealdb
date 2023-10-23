@@ -31,7 +31,9 @@ class MealItemCard extends StatelessWidget {
           const SizedBox(height: Dimens.dp8),
           RegularText(
             meal.strMeal ?? "",
+            maxLine: 1,
             align: TextAlign.justify,
+            overflow: TextOverflow.ellipsis,
             style: const TextStyle(
               color: Colors.white70,
             ),
