@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../../../core/core.dart';
 import '../../../home.dart';
 import 'sections/sections.dart';
 
@@ -10,13 +11,26 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text('Meals Master'),
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColorDark,
+          title: CustomSearchBar(
+            query: '',
+            hint: 'Search Meals...',
+            isEnabled: false,
+            height: 40,
+            onSearchClicked: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const SearchBarSection(),
+              ));
+            },
+            onQueryChange: (value) {},
+          ),
         ),
+        body: _buildBody(),
       ),
-      body: _buildBody(),
     );
   }
 
@@ -24,7 +38,7 @@ class HomePage extends StatelessWidget {
     final _mealsBloc = GetIt.I<MealsBloc>();
     return BlocProvider(
       create: (context) => _mealsBloc,
-      child: const MealsSection(),
+      child: const MealsSection(query: ''),
     );
   }
 }
