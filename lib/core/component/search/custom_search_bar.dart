@@ -11,11 +11,11 @@ class CustomSearchBar extends StatefulWidget {
   final double? height;
   final Function()? onSearchClicked;
   final Function(String) onQueryChange;
-  final Function(String?)? onSubmitted;
+  final Function(String)? onSubmitted;
 
   const CustomSearchBar({
     Key? key,
-    required this.query,
+    this.query = '',
     this.hint = 'Search...',
     this.isEnabled = true,
     this.margin = const EdgeInsets.all(Dimens.dp0),
@@ -30,8 +30,6 @@ class CustomSearchBar extends StatefulWidget {
 }
 
 class _CustomSearchBarState extends State<CustomSearchBar> {
-  bool isTextFieldFocused = false;
-  bool isTextFieldExist = false;
   final TextEditingController _controller = TextEditingController();
   final FocusNode _textFieldFocusNode = FocusNode();
 
@@ -40,16 +38,17 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
     super.initState();
     _controller.text = widget.query;
     if (widget.isEnabled) _textFieldFocusNode.requestFocus();
-    _textFieldFocusNode.addListener(() {
-      setState(() {
-        isTextFieldFocused = _textFieldFocusNode.hasFocus;
-      });
-    });
-    _controller.addListener(() {
-      setState(() {
-        _controller.text.isNotEmpty;
-      });
-    });
+  }
+
+  void _handleQueryChange(String newQuery) {
+    if (newQuery.isEmpty == true) _controller.clear();
+    setState(() => widget.onQueryChange(newQuery));
+  }
+
+  void _handleQuerySubmitted(String? newQuery) {
+    if (newQuery != null && widget.onSubmitted != null) {
+      widget.onSubmitted!(newQuery);
+    }
   }
 
   @override
@@ -64,9 +63,9 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
           controller: _controller,
           focusNode: _textFieldFocusNode,
           textInputAction: TextInputAction.search,
-          onChanged: widget.onQueryChange,
           enabled: widget.isEnabled,
-          onSubmitted: widget.onSubmitted,
+          onChanged: _handleQueryChange,
+          onSubmitted: _handleQuerySubmitted,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white24,
@@ -80,11 +79,10 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             ),
             hintText: widget.hint,
             hintStyle: const TextStyle(color: Colors.white60),
-            suffixIcon: isTextFieldFocused && _controller.text.isNotEmpty
+            suffixIcon: _controller.text.isNotEmpty
                 ? IconButton(
                     onPressed: () {
-                      widget.onQueryChange('');
-                      _controller.clear();
+                      _handleQueryChange('');
                     },
                     icon: const Icon(Icons.clear),
                   )
