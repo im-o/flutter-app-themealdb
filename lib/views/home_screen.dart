@@ -5,8 +5,21 @@ import '../cubits/recipe_cubit.dart';
 import '../widgets/recipe_card.dart';
 import '../widgets/glass_container.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +42,26 @@ class HomeScreen extends StatelessWidget {
                 child: BlocBuilder<RecipeCubit, RecipeState>(
                   builder: (context, state) {
                     if (state is RecipeLoading) {
-                      return const Center(
-                          child: CircularProgressIndicator(
-                              color: Color(0xFFFF5722)));
+                      return MasonryGridView.count(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 12,
+                        crossAxisSpacing: 12,
+                        itemCount: 4,
+                        itemBuilder: (context, index) {
+                          return SizedBox(
+                            height: 250,
+                            child: GlassContainer(
+                              borderRadius: BorderRadius.circular(24),
+                              child: const Center(
+                                child: CircularProgressIndicator(
+                                  color: Color(0xFFFF5722),
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
                     } else if (state is RecipeLoaded) {
                       return MasonryGridView.count(
                         crossAxisCount: 2,
@@ -44,8 +74,11 @@ class HomeScreen extends StatelessWidget {
                       );
                     } else if (state is RecipeError) {
                       return Center(
-                          child: Text(state.message,
-                              style: const TextStyle(color: Colors.white)));
+                        child: Text(
+                          state.message,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      );
                     }
                     return const SizedBox();
                   },
@@ -88,13 +121,27 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       borderRadius: BorderRadius.circular(16),
       child: TextField(
-        onChanged: (value) => context.read<RecipeCubit>().searchRecipes(value),
+        controller: _searchController,
+        onChanged: (value) {
+          context.read<RecipeCubit>().searchRecipes(value);
+          setState(() {}); // Rebuild to show/hide clear icon
+        },
         style: const TextStyle(color: Colors.white),
-        decoration: const InputDecoration(
-          icon: Icon(Icons.search, color: Colors.white70),
+        decoration: InputDecoration(
+          icon: const Icon(Icons.search, color: Colors.white70),
           hintText: 'Cari resep Indonesia...',
-          hintStyle: TextStyle(color: Colors.white38),
+          hintStyle: const TextStyle(color: Colors.white38),
           border: InputBorder.none,
+          suffixIcon: _searchController.text.isNotEmpty
+              ? IconButton(
+                  icon: const Icon(Icons.clear, color: Colors.white70),
+                  onPressed: () {
+                    _searchController.clear();
+                    context.read<RecipeCubit>().searchRecipes('');
+                    setState(() {});
+                  },
+                )
+              : null,
         ),
       ),
     );

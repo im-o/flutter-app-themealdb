@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'repositories/recipe_repository.dart';
 import 'cubits/recipe_cubit.dart';
-import 'views/home_screen.dart';
+import 'views/splash_screen.dart';
 
 void main() {
   runApp(const MealsMasterApp());
@@ -35,7 +35,7 @@ class MealsMasterApp extends StatelessWidget {
             ThemeData.dark().textTheme,
           ),
         ),
-        home: const HomeScreen(),
+        home: const SplashScreen(),
       ),
     );
   }
